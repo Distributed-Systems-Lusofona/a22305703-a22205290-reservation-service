@@ -6,7 +6,7 @@ spring:
     name: ${APPLICATION_NAME}
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_DB}:5432/${POSTGRES_DB}
+    url: jdbc:postgresql://reservation_db:5432/${POSTGRES_DB}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -17,16 +17,27 @@ spring:
       hibernate:
         format_sql: true
 
+
   kafka:
     producer:
       bootstrap-servers: kafka:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    properties:
+      spring.json.add.type.headers: false
 
 
-supplier:
-  events:
-    supplier-deactivated-events: supplier-deactivated-events
+kafka:
+  topics:
+    reservation-created: reservation.created
+    reservation-confirmed: reservation.confirmed
+    reservation-cancelled: reservation.cancelled
+    restaurant-notified: restaurant.notified
+
+
+restaurant:
+  service:
+    url: http://restaurant-service:8087
 
 feign:
   client:
