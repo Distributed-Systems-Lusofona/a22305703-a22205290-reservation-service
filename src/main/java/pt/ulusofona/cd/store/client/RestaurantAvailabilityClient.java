@@ -9,7 +9,7 @@ import java.util.List;
 @FeignClient(name = "restaurant-service", url = "${restaurant.service.url}")
 public interface RestaurantAvailabilityClient {
 
-    @GetMapping("/api/v1/restaurants/{id}/availability")
+    @GetMapping("/api/restaurants/{id}/availability")
     List<AvailabilitySlotDto> getAvailability(
             @PathVariable("id") String id,
             @RequestParam("date") String date,
