@@ -6,7 +6,11 @@ import pt.ulusofona.cd.store.dto.AvailabilitySlotDto;
 
 import java.util.List;
 
-@FeignClient(name = "restaurant-service", url = "${restaurant.service.url}")
+@FeignClient(
+        name = "restaurant-service",
+        contextId = "restaurantAvailabilityClient",
+        url = "${restaurant.service.url}"
+)
 public interface RestaurantAvailabilityClient {
 
     @GetMapping("/api/restaurants/{id}/availability")

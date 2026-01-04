@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import pt.ulusofona.cd.store.dto.ReleaseSeatsRequest;
 
-@FeignClient(name = "restaurant-service", url = "${restaurant.service.url}")
+@FeignClient(
+        name = "restaurant-service",
+        contextId = "restaurantCapacityClient",
+        url = "${restaurant.service.url}"
+)
 public interface RestaurantCapacityClient {
 
     @PostMapping("/api/restaurants/{id}/availability/release")
